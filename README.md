@@ -113,14 +113,14 @@ npm install
 
 ```bash
 cd backend
-npm start
+node src/server.js
 ```
 
 #### Start the Frontend Application
 
 ```bash
 cd frontend
-npm start
+npm run dev
 ```
 
 The React app will open in your default browser (typically on `http://localhost:3000`), and the backend API will run on a specified port (e.g., `http://localhost:5000`).
