@@ -6,15 +6,17 @@ const axios = require("axios"); // For making internal HTTP calls
 
 // Fake Load Generator: Simulate CPU-intensive task
 router.get("/fake-load", (req, res) => {
-    const startTime = Date.now();
-    let total = 0;
-    for (let i = 0; i < 1e7; i++) {
-      total += Math.sqrt(i);
-    }
-    const duration = Date.now() - startTime;
-    newrelic.recordCustomEvent("FakeLoadEvent", { duration, iterations: 1e7 });
-    res.json({ message: "Fake load generated", duration });
-  });
+  console.log("Starting CPU load simulation...");
+  const startTime = Date.now();
+  let total = 0;
+  for (let i = 0; i < 1e7; i++) {
+    total += Math.sqrt(i);
+  }
+  const duration = Date.now() - startTime;
+  newrelic.recordCustomEvent("FakeLoadEvent", { duration, iterations: 1e7 });
+  res.json({ message: "Fake load generated", duration });
+  console.log("Completed CPU load simulation. Duration:", duration, "ms");
+});
 
   
 // APM Simulation: Introduce an artificial delay
@@ -23,6 +25,7 @@ router.get("/simulate-apm", (req, res) => {
     setTimeout(() => {
       newrelic.recordCustomEvent("FakeAPMEvent", { delay });
       res.json({ message: "APM simulated endpoint", delay });
+      console.log("APM simulation complete. Delay:", delay, "ms");
     }, delay);
   });
 
@@ -39,6 +42,7 @@ router.get("/simulate-infra", (req, res) => {
       memoryUsage,
       diskIO,
     });
+    console.log("Infrastructure simulation complete:", { cpuUsage, memoryUsage, diskIO });
   });
 
   
