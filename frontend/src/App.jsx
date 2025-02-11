@@ -1,10 +1,17 @@
 import React from "react";
-import Dashboard from "./components/Dashboard";
+import ControlPanel from "./components/ControlPanel";
+import TodoList from "./components/TodoList";
+import "./styles/styles.css";
 
 const App = () => {
   return (
-    <div>
-      <Dashboard />
+    <div className="app-container">
+      <aside className="sidebar">
+        <ControlPanel />
+      </aside>
+      <main className="main-content">
+        <TodoList />
+      </main>
     </div>
   );
 };
